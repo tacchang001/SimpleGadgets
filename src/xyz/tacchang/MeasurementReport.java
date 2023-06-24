@@ -6,7 +6,8 @@ package xyz.tacchang;
 public final class MeasurementReport {
    
     /**
-     * 処理時間計測結果を識別するための識別子である。
+     * 計測箇所を識別するための識別子である。
+     * 計測箇所識別子と呼ぶ。
      */
     private String id;
     
@@ -18,7 +19,7 @@ public final class MeasurementReport {
     /**
      * コンストラクタ。
      * 
-     * @param id 処理時間識別子
+     * @param id 計測箇所識別子
      * @param elapsedEpochNano 処理時間 
      */
     public MeasurementReport(final String id, final long elapsedEpochNano) {
@@ -39,9 +40,9 @@ public final class MeasurementReport {
     }
     
     /**
-     * 識別子を取得する。
+     * 計測箇所識別子を取得する。
      * 
-     * @return 識別子 
+     * @return 計測箇所識別子 
      */
     public String getId() {
         return this.id;

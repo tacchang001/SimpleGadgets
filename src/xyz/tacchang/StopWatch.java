@@ -28,7 +28,7 @@ public final class StopWatch implements AutoCloseable {
     private long endNano = 0;
     
     /**
-     * MeasurementResultCollectableに渡す識別子である。
+     * MeasurementResultCollectableに渡す計測箇所識別子である。
      * 本クラスでは処理に使用しない。
      */
     private final String id;
@@ -57,7 +57,7 @@ public final class StopWatch implements AutoCloseable {
      * コンストラクタ。
      * 計測を自動で開始しない場合などクライアントで制御したい場合に使用する。
      * 
-     * @param immediately 真の場合計測を自動で開始する。 
+     * @param immediately 真の場合は計測を自動で開始する。 
      */
     public StopWatch(boolean immediately) {
         this(immediately, "", null);
@@ -67,8 +67,8 @@ public final class StopWatch implements AutoCloseable {
      * コンストラクタ。
      * 計測結果をMeasurementResultCollectableに登録する必要がある場合に使用する。
      * 
-     * @param immediately 真の時計測を自動で開始する。
-     * @param id MeasurementResultCollectableに渡す識別子。
+     * @param immediately 真の場合は計測を自動で開始する。
+     * @param id MeasurementResultCollectableに渡す計測箇所識別子。
      * @param reporter MeasurementResultCollectableオブジェクト。
      */
     public StopWatch(
