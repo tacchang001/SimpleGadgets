@@ -9,6 +9,7 @@ package xyz.tacchang;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 /**
@@ -35,7 +36,7 @@ public class PeriodRecorder implements PeriodRecordable {
         return SingletonHolder.INSTANCE;
     }
     
-    class Record {
+    final class Record {
         private final Uniquable id;
         private final long epochNano;
         private final boolean begin;
@@ -72,10 +73,10 @@ public class PeriodRecorder implements PeriodRecordable {
         }
     }
     
-    private List<Record> records = new ArrayList<>();
+    private List<Record> records = new CopyOnWriteArrayList<>();
     
     @Override
-    public void begin(Uniquable id) {
+    public synchronized void begin(Uniquable id) {
         final long epochNano = System.nanoTime();
         final Record record = new Record(id, true, epochNano);
         final Tuple<String, Boolean> key = new Tuple(id.getKey(), true);
@@ -83,7 +84,7 @@ public class PeriodRecorder implements PeriodRecordable {
     }
 
     @Override
-    public void end(Uniquable id) {
+    public synchronized void end(Uniquable id) {
         final long epochNano = System.nanoTime();
         final Record record = new Record(id, false, epochNano);
         final Tuple<String, Boolean> key = new Tuple(id.getKey(), false);
@@ -96,7 +97,7 @@ public class PeriodRecorder implements PeriodRecordable {
      * 
      * @return 記録簿 
      */
-    public List<Record> getImmutableRecords() {
+    public synchronized List<Record> getImmutableRecords() {
         return Collections.unmodifiableList(records);
     }
     
