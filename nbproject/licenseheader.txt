@@ -1,0 +1,9 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix} Copyright (c) ${date?date?string("yyyy")} ${user}
+${licensePrefix} Released under the MIT license
+${licensePrefix} https://opensource.org/licenses/mit-license.php
+<#if licenseLast??>
+${licenseLast}
+</#if>
