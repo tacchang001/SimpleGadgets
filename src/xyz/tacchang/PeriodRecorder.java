@@ -79,7 +79,7 @@ public class PeriodRecorder implements PeriodRecordable {
     public synchronized void begin(Uniquable id) {
         final long epochNano = System.nanoTime();
         final Record record = new Record(id, true, epochNano);
-        final Tuple<String, Boolean> key = new Tuple(id.getKey(), true);
+        final Pair<String, Boolean> key = new Pair(id.getKey(), true);
         records.add(record);
     }
 
@@ -87,7 +87,7 @@ public class PeriodRecorder implements PeriodRecordable {
     public synchronized void end(Uniquable id) {
         final long epochNano = System.nanoTime();
         final Record record = new Record(id, false, epochNano);
-        final Tuple<String, Boolean> key = new Tuple(id.getKey(), false);
+        final Pair<String, Boolean> key = new Pair(id.getKey(), false);
         records.add(record);
     }
     
